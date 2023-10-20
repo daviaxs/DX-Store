@@ -23,10 +23,12 @@ export function ProductItem({ product }: ProductItemProps) {
           }}
         />
 
-        <Badge className="absolute left-4 top-4 px-2 py-[2px]">
-          <ArrowDown size={12} />
-          {product.discountPercentage}%
-        </Badge>
+        {product.discountPercentage > 0 && (
+          <Badge className="absolute left-4 top-4 px-2 py-[2px]">
+            <ArrowDown size={12} />
+            {product.discountPercentage}%
+          </Badge>
+        )}
       </div>
 
       <div className="flex flex-col gap-1">
