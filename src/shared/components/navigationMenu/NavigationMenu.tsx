@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button'
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTrigger,
@@ -14,6 +15,7 @@ import {
   PercentIcon,
 } from 'lucide-react'
 import { signIn, signOut, useSession } from 'next-auth/react'
+import Link from 'next/link'
 import { UserProfile } from './UserProfile'
 
 export function NavigationMenu() {
@@ -64,20 +66,34 @@ export function NavigationMenu() {
               </Button>
             )}
 
-            <Button variant="outline" className="w-full justify-start gap-2">
-              <Home size={16} />
-              Início
-            </Button>
+            <SheetClose asChild>
+              <Link href="/">
+                <Button
+                  variant="outline"
+                  className="w-full justify-start gap-2"
+                >
+                  <Home size={16} />
+                  Início
+                </Button>
+              </Link>
+            </SheetClose>
 
             <Button variant="outline" className="w-full justify-start gap-2">
               <PercentIcon size={16} />
               Ofertas
             </Button>
 
-            <Button variant="outline" className="w-full justify-start gap-2">
-              <ListOrderedIcon size={16} />
-              Catálogo
-            </Button>
+            <SheetClose asChild>
+              <Link href="/catalogo">
+                <Button
+                  variant="outline"
+                  className="w-full justify-start gap-2"
+                >
+                  <ListOrderedIcon size={16} />
+                  Catálogo
+                </Button>
+              </Link>
+            </SheetClose>
           </div>
           <footer>
             <UserProfile />
