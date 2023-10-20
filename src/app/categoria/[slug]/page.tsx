@@ -4,7 +4,15 @@ import { ProductItem } from '@/shared/components/productItem/ProductItem'
 import { CATEGOTY_ICON } from '@/shared/constants/categoryIcon'
 import { computeProductTotalPrice } from '@/shared/helpers/product'
 
-export default async function CategoryProduct({ params }: any) {
+interface ParamsProps {
+  slug: string
+}
+
+export default async function CategoryProduct({
+  params,
+}: {
+  params: ParamsProps
+}) {
   const category = await prismaClient.category.findFirst({
     where: {
       slug: params.slug,
