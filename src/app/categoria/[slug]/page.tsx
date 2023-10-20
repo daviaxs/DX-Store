@@ -40,6 +40,7 @@ export default async function CategoryProduct({
         {category.products.map((product) => (
           <ProductItem
             product={computeProductTotalPrice(product)}
+            productWidthSize="full"
             key={product.id}
           />
         ))}

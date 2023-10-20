@@ -5,11 +5,12 @@ import Image from 'next/image'
 
 interface ProductItemProps {
   product: ProductWithTotalPrice
+  productWidthSize: '[170px]' | 'full'
 }
 
-export function ProductItem({ product }: ProductItemProps) {
+export function ProductItem({ product, productWidthSize }: ProductItemProps) {
   return (
-    <div className="flex w-full flex-col gap-4">
+    <div className={`flex w-${productWidthSize} flex-col gap-4`}>
       <div className="relative flex h-[170px] w-full items-center justify-center rounded-lg bg-accent">
         <Image
           src={product.imageUrls[0]}
