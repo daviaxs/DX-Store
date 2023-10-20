@@ -7,7 +7,7 @@ export function PromoBanner({ alt, ...props }: ImageProps) {
       alt={alt}
       height={0}
       width={0}
-      className="mt-2 h-auto w-full px-5"
+      className="h-auto w-full px-5"
       sizes="100vw"
     />
   )
