@@ -34,7 +34,7 @@ export function ProductItem({ product }: ProductItemProps) {
           {product.name}
         </p>
 
-        <p className="flex items-center gap-2">
+        <div className="flex items-center gap-2">
           {product.discountPercentage > 0 && (
             <>
               <p className="font-semibold">
@@ -52,7 +52,7 @@ export function ProductItem({ product }: ProductItemProps) {
               R$ {Number(product.basePrice).toFixed(2).replace('.', ',')}
             </p>
           )}
-        </p>
+        </div>
       </div>
     </div>
   )
