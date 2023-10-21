@@ -1,5 +1,6 @@
 import { ParamsProps } from '@/app/categoria/[slug]/page'
 import { prismaClient } from '@/lib/prisma'
+import { SectionTile } from '@/shared/components/SectionTitle/SectionTitle'
 import { ProductList } from '@/shared/components/productList/ProductList'
 import { computeProductTotalPrice } from '@/shared/helpers/product'
 import { ProductImages } from './utils/ProductImages'
@@ -41,7 +42,7 @@ export default async function ProductDetailsPage({
       <ProductInfo product={computeProductTotalPrice(product)} />
 
       <div className="flex flex-col gap-2">
-        <h2 className="px-5 font-bold uppercase">PRODUTOS RECOMENDADOS</h2>
+        <SectionTile>Produtos recomendados</SectionTile>
         <ProductList products={product.category.products} />
       </div>
     </div>
