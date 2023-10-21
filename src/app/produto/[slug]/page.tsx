@@ -1,5 +1,6 @@
 import { ParamsProps } from '@/app/categoria/[slug]/page'
 import { prismaClient } from '@/lib/prisma'
+import { ProductImages } from './utils/ProductImages'
 
 export default async function ProductDetailsPage({
   params: { slug },
@@ -14,5 +15,12 @@ export default async function ProductDetailsPage({
     return null
   }
 
-  return <div>{product.name}</div>
+  return (
+    <div>
+      <ProductImages
+        imagesIUrls={product.imageUrls}
+        productName={product.name}
+      />
+    </div>
+  )
 }
