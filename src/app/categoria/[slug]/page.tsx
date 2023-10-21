@@ -4,18 +4,18 @@ import { ProductItem } from '@/shared/components/productItem/ProductItem'
 import { CATEGOTY_ICON } from '@/shared/constants/categoryIcon'
 import { computeProductTotalPrice } from '@/shared/helpers/product'
 
-interface ParamsProps {
-  slug: string
+export interface ParamsProps {
+  params: {
+    slug: string
+  }
 }
 
 export default async function CategoryProduct({
-  params,
-}: {
-  params: ParamsProps
-}) {
+  params: { slug },
+}: ParamsProps) {
   const category = await prismaClient.category.findFirst({
     where: {
-      slug: params.slug,
+      slug,
     },
     include: {
       products: true,
@@ -32,7 +32,7 @@ export default async function CategoryProduct({
         className="w-fit gap-1 border-2 border-primary px-4 py-2 text-base font-bold uppercase"
         variant="outline"
       >
-        {CATEGOTY_ICON[params.slug as keyof typeof CATEGOTY_ICON]}
+        {CATEGOTY_ICON[slug as keyof typeof CATEGOTY_ICON]}
         {category.name}
       </Badge>
 
