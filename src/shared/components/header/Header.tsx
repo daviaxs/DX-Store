@@ -8,7 +8,7 @@ import { NavigationMenu } from '../navigationMenu/NavigationMenu'
 
 export function Header() {
   return (
-    <Card className="mb-4 flex items-center justify-between p-[1.875rem]">
+    <Card className="flex items-center justify-between p-[1.875rem]">
       <NavigationMenu />
 
       <Link href="/">
