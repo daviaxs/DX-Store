@@ -1,22 +1,19 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { CartContext } from '@/providers/cart'
 import { DiscountBadge } from '@/shared/components/discountBadge/DiscountBadge'
 import { ProductWithTotalPrice } from '@/shared/helpers/product'
 import { ArrowLeftIcon, ArrowRightIcon, TruckIcon } from 'lucide-react'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 
 interface ProductInfoProps {
-  product: Pick<
-    ProductWithTotalPrice,
-    'basePrice' | 'description' | 'discountPercentage' | 'totalPrice' | 'name'
-  >
+  product: ProductWithTotalPrice
 }
 
-export function ProductInfo({
-  product: { basePrice, description, discountPercentage, totalPrice, name },
-}: ProductInfoProps) {
+export function ProductInfo({ product }: ProductInfoProps) {
   const [quantity, setQuantity] = useState(1)
+  const { addProductToCart } = useContext(CartContext)
 
   const handleDecreaseQuantityClick = () => {
     setQuantity((prev) => (prev === 1 ? prev : prev - 1))
@@ -26,23 +23,27 @@ export function ProductInfo({
     setQuantity((prev) => prev + 1)
   }
 
+  const handleAddToCartClick = () => {
+    addProductToCart({ ...product, quantity })
+  }
+
   return (
     <div className="flex flex-col px-5">
-      <h2 className="text-lg">{name}</h2>
+      <h2 className="text-lg">{product.name}</h2>
 
       <div className="flex items-center gap-2">
         <h1 className="text-xl font-bold">
-          R$ {totalPrice.toFixed(2).replace('.', ',')}
+          R$ {product.totalPrice.toFixed(2).replace('.', ',')}
         </h1>
 
-        {discountPercentage > 0 && (
-          <DiscountBadge>{discountPercentage}</DiscountBadge>
+        {product.discountPercentage > 0 && (
+          <DiscountBadge>{product.discountPercentage}</DiscountBadge>
         )}
       </div>
 
-      {discountPercentage > 0 && (
+      {product.discountPercentage > 0 && (
         <p className="text-sm line-through opacity-50">
-          R$ {Number(basePrice).toFixed(2).replace('.', ',')}
+          R$ {Number(product.basePrice).toFixed(2).replace('.', ',')}
         </p>
       )}
 
@@ -66,13 +67,16 @@ export function ProductInfo({
         </Button>
       </div>
 
-      <Button className="mt-4 font-bold uppercase">
+      <Button
+        className="mt-4 font-bold uppercase"
+        onClick={handleAddToCartClick}
+      >
         Adicionar ao carrinho
       </Button>
 
       <div className="mt-4 flex flex-col gap-3">
         <h3 className="font-bold">Descrição</h3>
-        <p className="text-justify text-sm opacity-60">{description}</p>
+        <p className="text-justify text-sm opacity-60">{product.description}</p>
       </div>
 
       <div className="mt-4 flex items-center justify-between rounded-lg bg-accent px-5 py-2">

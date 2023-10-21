@@ -1,9 +1,8 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { ShoppingCartIcon } from 'lucide-react'
 import Link from 'next/link'
+import { CartMenu } from '../cartMenu/CartMenu'
 import { NavigationMenu } from '../navigationMenu/NavigationMenu'
 
 export function Header() {
@@ -17,9 +16,7 @@ export function Header() {
         </h1>
       </Link>
 
-      <Button size="icon" variant="outline">
-        <ShoppingCartIcon />
-      </Button>
+      <CartMenu />
     </Card>
   )
 }

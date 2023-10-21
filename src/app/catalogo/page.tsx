@@ -9,7 +9,7 @@ export default async function CatalogPage() {
   return (
     <div className="flex flex-col gap-8 p-5">
       <Badge
-        className="w-fit gap-1 border-2 border-primary px-4 py-2 text-base font-bold uppercase"
+        className="w-fit gap-1 border-2 border-primary px-4 py-2 text-sm font-bold uppercase"
         variant="outline"
       >
         <CatalogIcon size={16} />
