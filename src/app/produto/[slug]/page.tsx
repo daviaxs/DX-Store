@@ -41,7 +41,7 @@ export default async function ProductDetailsPage({
 
       <ProductInfo product={computeProductTotalPrice(product)} />
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col">
         <SectionTile>Produtos recomendados</SectionTile>
         <ProductList products={product.category.products} />
       </div>
