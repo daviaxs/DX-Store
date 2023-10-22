@@ -8,9 +8,10 @@ import { computeProductTotalPrice } from '@/shared/helpers/product'
 import { ShoppingCartIcon } from 'lucide-react'
 import { useContext } from 'react'
 import { CartItem } from './utils/CartItem'
+import { Separator } from './utils/Separator'
 
 export function CartMenu() {
-  const { products } = useContext(CartContext)
+  const { products, subTotal, total, totalDiscount } = useContext(CartContext)
 
   return (
     <Sheet>
@@ -31,12 +32,48 @@ export function CartMenu() {
           </Badge>
 
           <div className="flex flex-col gap-5">
-            {products.map((product) => (
-              <CartItem
-                key={product.id}
-                product={computeProductTotalPrice(product as any) as any}
-              />
-            ))}
+            {products.length > 0 ? (
+              products.map((product) => (
+                <CartItem
+                  key={product.id}
+                  product={computeProductTotalPrice(product as any) as any}
+                />
+              ))
+            ) : (
+              <p className="text-center font-bold opacity-75">
+                Carrinho vazio.
+              </p>
+            )}
+          </div>
+
+          <Separator />
+
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center justify-between text-xs">
+              <p>Subtotal</p>
+              <p>R$ {subTotal.toFixed(2).replace('.', ',')}</p>
+            </div>
+
+            <Separator />
+
+            <div className="flex items-center justify-between text-xs">
+              <p>Entrega</p>
+              <p className="uppercase">Grátis</p>
+            </div>
+
+            <Separator />
+
+            <div className="flex items-center justify-between text-xs">
+              <p>Desconto</p>
+              <p>R$ {totalDiscount.toFixed(2).replace('.', ',')}</p>
+            </div>
+
+            <Separator />
+
+            <div className="flex items-center justify-between text-sm font-bold">
+              <p>Total</p>
+              <p>R$ {total.toFixed(2).replace('.', ',')}</p>
+            </div>
           </div>
         </div>
       </SheetContent>
