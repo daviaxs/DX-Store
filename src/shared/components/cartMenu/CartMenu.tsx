@@ -1,11 +1,13 @@
 'use client'
 
+import { createCheckout } from '@/actions/checkout'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { CartContext } from '@/providers/cart'
 import { computeProductTotalPrice } from '@/shared/helpers/product'
+import { loadStripe } from '@stripe/stripe-js'
 import { ShoppingCartIcon } from 'lucide-react'
 import { useContext } from 'react'
 import { CartItem } from './utils/CartItem'
@@ -13,6 +15,16 @@ import { Separator } from './utils/Separator'
 
 export function CartMenu() {
   const { products, subTotal, total, totalDiscount } = useContext(CartContext)
+
+  const handleFinishPurchaseClick = async () => {
+    const checkout = await createCheckout(products)
+
+    const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY)
+
+    stripe?.redirectToCheckout({
+      sessionId: checkout.id,
+    })
+  }
 
   return (
     <Sheet>
@@ -78,7 +90,10 @@ export function CartMenu() {
               <p>R$ {total.toFixed(2).replace('.', ',')}</p>
             </div>
 
-            <Button className="mt-5 font-bold uppercase">
+            <Button
+              className="mt-5 font-bold uppercase"
+              onClick={handleFinishPurchaseClick}
+            >
               Finalizar compra
             </Button>
           </div>
