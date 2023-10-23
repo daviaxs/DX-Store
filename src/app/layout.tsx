@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 
 import { AuthProvider } from '@/providers/auth'
 import { CartProvider } from '@/providers/cart'
-import { Footer } from '@/shared/components/footer/Footer'
+import { Footer } from '@/shared/components/rodape/Rodape'
 import { Header } from '@/shared/components/header/Header'
 import './globals.css'
 

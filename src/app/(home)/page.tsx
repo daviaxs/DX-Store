@@ -1,6 +1,6 @@
 import { prismaClient } from '@/lib/prisma'
 import { ProductList } from '@/shared/components/productList/ProductList'
-import { SectionTile } from '@/shared/components/sectionTitle/SectionTitle'
+import { SectionTile } from '@/shared/components/tituloSecao/TituloSecao'
 import { Categories } from './utils/Categories'
 import { PromoBanner } from './utils/PromoBanner'
 

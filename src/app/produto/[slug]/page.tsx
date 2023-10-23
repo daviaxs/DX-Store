@@ -1,7 +1,7 @@
 import { ParamsProps } from '@/app/categoria/[slug]/page'
 import { prismaClient } from '@/lib/prisma'
 import { ProductList } from '@/shared/components/productList/ProductList'
-import { SectionTile } from '@/shared/components/sectionTitle/SectionTitle'
+import { SectionTile } from '@/shared/components/tituloSecao/TituloSecao'
 import { computeProductTotalPrice } from '@/shared/helpers/product'
 import { ProductImages } from './utils/ProductImages'
 import { ProductInfo } from './utils/ProductInfo'
