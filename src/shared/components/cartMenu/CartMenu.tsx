@@ -34,7 +34,7 @@ export function CartMenu() {
         </Button>
       </SheetTrigger>
 
-      <SheetContent>
+      <SheetContent className="w-[90%]">
         <div className="flex h-full flex-col gap-8">
           <Badge
             className="w-fit gap-1 border-2 border-primary px-4 py-2 text-sm font-bold uppercase"
