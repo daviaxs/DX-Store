@@ -63,40 +63,42 @@ export function CartMenu() {
             </ScrollArea>
           </div>
 
-          <div className="flex flex-col gap-3 bg-zinc-950">
-            <div className="flex items-center justify-between text-xs">
-              <p>Subtotal</p>
-              <p>R$ {subTotal.toFixed(2).replace('.', ',')}</p>
+          {products.length > 0 && (
+            <div className="flex flex-col gap-3 bg-zinc-950">
+              <div className="flex items-center justify-between text-xs">
+                <p>Subtotal</p>
+                <p>R$ {subTotal.toFixed(2).replace('.', ',')}</p>
+              </div>
+
+              <Separator />
+
+              <div className="flex items-center justify-between text-xs">
+                <p>Entrega</p>
+                <p className="uppercase">Grátis</p>
+              </div>
+
+              <Separator />
+
+              <div className="flex items-center justify-between text-xs">
+                <p>Desconto</p>
+                <p>R$ {totalDiscount.toFixed(2).replace('.', ',')}</p>
+              </div>
+
+              <Separator />
+
+              <div className="flex items-center justify-between text-sm font-bold">
+                <p>Total</p>
+                <p>R$ {total.toFixed(2).replace('.', ',')}</p>
+              </div>
+
+              <Button
+                className="mt-5 font-bold uppercase"
+                onClick={handleFinishPurchaseClick}
+              >
+                Finalizar compra
+              </Button>
             </div>
-
-            <Separator />
-
-            <div className="flex items-center justify-between text-xs">
-              <p>Entrega</p>
-              <p className="uppercase">Grátis</p>
-            </div>
-
-            <Separator />
-
-            <div className="flex items-center justify-between text-xs">
-              <p>Desconto</p>
-              <p>R$ {totalDiscount.toFixed(2).replace('.', ',')}</p>
-            </div>
-
-            <Separator />
-
-            <div className="flex items-center justify-between text-sm font-bold">
-              <p>Total</p>
-              <p>R$ {total.toFixed(2).replace('.', ',')}</p>
-            </div>
-
-            <Button
-              className="mt-5 font-bold uppercase"
-              onClick={handleFinishPurchaseClick}
-            >
-              Finalizar compra
-            </Button>
-          </div>
+          )}
         </div>
       </SheetContent>
     </Sheet>
