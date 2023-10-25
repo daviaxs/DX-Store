@@ -1,6 +1,5 @@
-'use client'
-
 import { createCheckout } from '@/actions/checkout'
+import { createOrder } from '@/actions/order'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
@@ -9,14 +8,24 @@ import { CartContext } from '@/providers/cart'
 import { computeProductTotalPrice } from '@/shared/helpers/product'
 import { loadStripe } from '@stripe/stripe-js'
 import { ShoppingCartIcon } from 'lucide-react'
+import { useSession } from 'next-auth/react'
 import { useContext } from 'react'
 import { CartItem } from './utils/CartItem'
 import { Separator } from './utils/Separator'
 
 export function CartMenu() {
+  const { data } = useSession()
   const { products, subTotal, total, totalDiscount } = useContext(CartContext)
 
   const handleFinishPurchaseClick = async () => {
+    if (!data?.user) {
+      // redirecionar para o login
+      return
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await createOrder(products, (data.user as any).id)
+
     const checkout = await createCheckout(products)
 
     const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY)
@@ -51,6 +60,7 @@ export function CartMenu() {
                   products.map((product) => (
                     <CartItem
                       key={product.id}
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
                       product={computeProductTotalPrice(product as any) as any}
                     />
                   ))
