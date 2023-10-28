@@ -1,5 +1,5 @@
-import { Badge } from '@/components/ui/badge'
 import { prismaClient } from '@/lib/prisma'
+import { BadgeSection } from '@/shared/components/badgeSection/BadgeSection'
 import { ProductItem } from '@/shared/components/productItem/ProductItem'
 import { CATEGOTY_ICON } from '@/shared/constants/categoryIcon'
 import { computeProductTotalPrice } from '@/shared/helpers/product'
@@ -28,13 +28,10 @@ export default async function CategoryProduct({
 
   return (
     <div className="flex flex-col gap-8 p-5">
-      <Badge
-        className="w-fit gap-1 border-2 border-primary px-4 py-2 text-base font-bold uppercase"
-        variant="outline"
-      >
+      <BadgeSection>
         {CATEGOTY_ICON[slug as keyof typeof CATEGOTY_ICON]}
         {category.name}
-      </Badge>
+      </BadgeSection>
 
       <div className="grid grid-cols-2 gap-8">
         {category.products.map((product) => (
