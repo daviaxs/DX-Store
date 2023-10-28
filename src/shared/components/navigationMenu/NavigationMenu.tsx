@@ -13,6 +13,7 @@ import {
   LogOut,
   MenuIcon,
   PercentIcon,
+  ShoppingBasket,
 } from 'lucide-react'
 import { signIn, signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
@@ -74,6 +75,18 @@ export function NavigationMenu() {
                 >
                   <Home size={16} />
                   Início
+                </Button>
+              </Link>
+            </SheetClose>
+
+            <SheetClose asChild>
+              <Link href="/pedidos">
+                <Button
+                  variant="outline"
+                  className="w-full justify-start gap-2"
+                >
+                  <ShoppingBasket size={16} />
+                  Meus pedidos
                 </Button>
               </Link>
             </SheetClose>
