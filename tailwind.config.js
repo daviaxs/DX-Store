@@ -15,6 +15,12 @@ module.exports = {
         '2xl': '1400px',
       },
     },
+    screens: {
+      sm: '450px',
+      md: '768px',
+      lg: '1024px',
+      '2xl': '1280px',
+    },
     extend: {
       backgroundImage: {
         'category-item-gradient':
