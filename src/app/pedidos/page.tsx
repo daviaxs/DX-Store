@@ -6,7 +6,7 @@ import { getServerSession } from 'next-auth'
 import { OrderItem } from './utils/OrderItem'
 
 export default async function OrdersPage() {
-  const user = getServerSession(authOptions)
+  const user = await getServerSession(authOptions)
 
   if (!user) {
     return <p>Acesso negado</p>
@@ -18,7 +18,11 @@ export default async function OrdersPage() {
       userId: (user as any).id,
     },
     include: {
-      orderProducts: true,
+      orderProducts: {
+        include: {
+          product: true,
+        },
+      },
     },
   })
 

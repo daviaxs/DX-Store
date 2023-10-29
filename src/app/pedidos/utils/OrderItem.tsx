@@ -5,13 +5,19 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 import { Card } from '@/components/ui/card'
+import { Separator } from '@/shared/components/cartMenu/utils/Separator'
 import { Prisma } from '@prisma/client'
 import { format } from 'date-fns'
+import { OrderProductItem } from './OrderProductItem'
 
 interface OrderItemProps {
   order: Prisma.OrderGetPayload<{
     include: {
-      orderProducts: true
+      orderProducts: {
+        include: {
+          product: true
+        }
+      }
     }
   }>
 }
@@ -38,8 +44,8 @@ export function OrderItem({ order }: OrderItemProps) {
           </AccordionTrigger>
 
           <AccordionContent>
-            <div className="flex flex-col">
-              <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-col gap-4">
+              <div className="grid grid-cols-2 justify-between gap-4 sm:flex">
                 <div className="flex flex-col font-bold">
                   <span className="uppercase">Status</span>
                   {statusText()}
@@ -56,6 +62,18 @@ export function OrderItem({ order }: OrderItemProps) {
                   <span className="uppercase">Pagamento</span>
                   <span className="font-light opacity-75">Cartão</span>
                 </div>
+              </div>
+
+              <Separator />
+
+              <div className="flex flex-col gap-5">
+                {order.orderProducts.map((orderProduct, index) => (
+                  <OrderProductItem
+                    key={orderProduct.id}
+                    orderProduct={orderProduct}
+                    isLastItem={index === order.orderProducts.length - 1}
+                  />
+                ))}
               </div>
             </div>
           </AccordionContent>
