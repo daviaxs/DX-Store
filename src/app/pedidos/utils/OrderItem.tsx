@@ -8,6 +8,7 @@ import { Card } from '@/components/ui/card'
 import { Separator } from '@/shared/components/cartMenu/utils/Separator'
 import { Prisma } from '@prisma/client'
 import { format } from 'date-fns'
+import { useMemo } from 'react'
 import { OrderProductItem } from './OrderProductItem'
 
 interface OrderItemProps {
@@ -23,6 +24,29 @@ interface OrderItemProps {
 }
 
 export function OrderItem({ order }: OrderItemProps) {
+  const subTotal = useMemo(() => {
+    return order.orderProducts.reduce((acc, orderProduct) => {
+      return (
+        acc + Number(orderProduct.product.basePrice) * orderProduct.quantity
+      )
+    }, 0)
+  }, [order.orderProducts])
+
+  const discount = useMemo(() => {
+    return order.orderProducts.reduce((acc, orderProduct) => {
+      return (
+        acc +
+        Number(orderProduct.product.basePrice) *
+          (orderProduct.product.discountPercentage / 100) *
+          orderProduct.quantity
+      )
+    }, 0)
+  }, [order.orderProducts])
+
+  const total = useMemo(() => {
+    return subTotal - discount
+  }, [subTotal, discount])
+
   const statusText = () => {
     if (order.status === 'WAITING_FOR_PAYMENT') {
       return <span className="text-red-500">Não pago</span>
@@ -74,6 +98,51 @@ export function OrderItem({ order }: OrderItemProps) {
                     isLastItem={index === order.orderProducts.length - 1}
                   />
                 ))}
+              </div>
+
+              <div className="flex w-full flex-col gap-1 text-xs">
+                <Separator />
+
+                <div className="flex w-full justify-between py-3">
+                  <p>Subtotal</p>
+                  <p>
+                    {subTotal.toLocaleString('pt-br', {
+                      style: 'currency',
+                      currency: 'BRL',
+                    })}
+                  </p>
+                </div>
+
+                <Separator />
+
+                <div className="flex w-full justify-between py-3">
+                  <p>Entrega</p>
+                  <p className="uppercase">GRÁTIs</p>
+                </div>
+
+                <Separator />
+
+                <div className="flex w-full justify-between py-3">
+                  <p>Descontos</p>
+                  <p>
+                    {discount.toLocaleString('pt-br', {
+                      style: 'currency',
+                      currency: 'BRL',
+                    })}
+                  </p>
+                </div>
+
+                <Separator />
+
+                <div className="flex w-full justify-between py-3 text-sm font-bold">
+                  <p>Total</p>
+                  <p>
+                    {total.toLocaleString('pt-br', {
+                      style: 'currency',
+                      currency: 'BRL',
+                    })}
+                  </p>
+                </div>
               </div>
             </div>
           </AccordionContent>
