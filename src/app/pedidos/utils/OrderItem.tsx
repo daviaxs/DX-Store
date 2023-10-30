@@ -49,7 +49,7 @@ export function OrderItem({ order }: OrderItemProps) {
 
   const statusText = () => {
     if (order.status === 'WAITING_FOR_PAYMENT') {
-      return <span className="text-red-500">Não pago</span>
+      return <span className="text-red-500">Pendente</span>
     } else {
       return <span className="text-green-400">Pago</span>
     }
