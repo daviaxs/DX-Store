@@ -79,17 +79,19 @@ export function NavigationMenu() {
               </Link>
             </SheetClose>
 
-            <SheetClose asChild>
-              <Link href="/pedidos">
-                <Button
-                  variant="outline"
-                  className="w-full justify-start gap-2"
-                >
-                  <ShoppingBasket size={16} />
-                  Meus pedidos
-                </Button>
-              </Link>
-            </SheetClose>
+            {status === 'authenticated' && (
+              <SheetClose asChild>
+                <Link href="/pedidos">
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start gap-2"
+                  >
+                    <ShoppingBasket size={16} />
+                    Meus pedidos
+                  </Button>
+                </Link>
+              </SheetClose>
+            )}
 
             <SheetClose asChild>
               <Link href="/ofertas">
