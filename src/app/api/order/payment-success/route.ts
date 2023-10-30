@@ -22,7 +22,6 @@ export const POST = async (request: Request) => {
   )
 
   if (event.type === 'checkout.session.completed') {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const session = event.data.object as any
 
     const sessionWithLineItems = await stripe.checkout.sessions.retrieve(
@@ -31,7 +30,9 @@ export const POST = async (request: Request) => {
         expand: ['line_items'],
       },
     )
-    // const lineItems = sessionWithLineItems.line_items
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const lineItems = sessionWithLineItems.line_items
 
     await prismaClient.order.update({
       where: {
