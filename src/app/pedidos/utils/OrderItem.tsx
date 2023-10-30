@@ -56,14 +56,19 @@ export function OrderItem({ order }: OrderItemProps) {
   }
 
   return (
-    <Card className="px-5">
+    <Card className="px-5 hover:bg-[#101010]">
       <Accordion type="single" className="w-full" collapsible>
         <AccordionItem value={order.id}>
           <AccordionTrigger>
             <div className="flex flex-col gap-1 text-left">
-              {order.orderProducts.length === 1
-                ? `Pedido com ${order.orderProducts.length} produto`
-                : `Pedido com ${order.orderProducts.length} produtos`}
+              <h2>
+                {order.orderProducts.length === 1
+                  ? `Pedido com ${order.orderProducts.length} produto`
+                  : `Pedido com ${order.orderProducts.length} produtos`}
+              </h2>
+              <p className="text-xs opacity-75">
+                Feito em {format(order.createdAt, 'd/MM/y')}{' '}
+              </p>
             </div>
           </AccordionTrigger>
 
