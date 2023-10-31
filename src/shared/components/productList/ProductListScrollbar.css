@@ -1,0 +1,28 @@
+.productListSCrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #060c04 #dfe9eb;
+}
+
+.productListSCrollbar::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+.productListSCrollbar::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: #0b0c0c00;
+}
+
+.productListSCrollbar::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #191919;
+}
+
+.productListSCrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #2b2b2b;
+}
+
+@media screen and (max-width: 768px) {
+  .productListSCrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
