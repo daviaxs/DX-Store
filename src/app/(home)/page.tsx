@@ -59,13 +59,13 @@ export default async function Home() {
         <PromoBanner
           src="/banner_home_02.png"
           alt="Até 55% de desconto em mouses!"
-          className="w-full md:w-[40%]"
+          className="w-full md:w-[45%]"
         />
 
         <PromoBanner
           src="/banner_home_03.png"
           alt="Até 20% de desconto em fones!"
-          className="w-full md:w-[40%]"
+          className="w-full md:w-[45%]"
         />
       </div>
 
