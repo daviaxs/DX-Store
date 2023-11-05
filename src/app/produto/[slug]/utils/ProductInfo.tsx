@@ -29,23 +29,27 @@ export function ProductInfo({ product }: ProductInfoProps) {
 
   return (
     <div className="mt-4 flex flex-col px-5 lg:m-5 lg:h-[500px] lg:w-full lg:rounded-lg lg:bg-accent lg:py-8">
-      <h2 className="text-lg">{product.name}</h2>
+      <div className="lg-gap-2 lg:flex lg:flex-col lg:gap-2">
+        <h2 className="text-lg">{product.name}</h2>
 
-      <div className="flex items-center gap-2">
-        <h1 className="text-xl font-bold">
-          R$ {product.totalPrice.toFixed(2).replace('.', ',')}
-        </h1>
+        <span>
+          <div className="flex items-center gap-2">
+            <h1 className="text-xl font-bold">
+              R$ {product.totalPrice.toFixed(2).replace('.', ',')}
+            </h1>
 
-        {product.discountPercentage > 0 && (
-          <DiscountBadge>{product.discountPercentage}</DiscountBadge>
-        )}
+            {product.discountPercentage > 0 && (
+              <DiscountBadge>{product.discountPercentage}</DiscountBadge>
+            )}
+          </div>
+
+          {product.discountPercentage > 0 && (
+            <p className="text-sm line-through opacity-50">
+              R$ {Number(product.basePrice).toFixed(2).replace('.', ',')}
+            </p>
+          )}
+        </span>
       </div>
-
-      {product.discountPercentage > 0 && (
-        <p className="text-sm line-through opacity-50">
-          R$ {Number(product.basePrice).toFixed(2).replace('.', ',')}
-        </p>
-      )}
 
       <div className="mt-4 flex items-center gap-2">
         <Button
