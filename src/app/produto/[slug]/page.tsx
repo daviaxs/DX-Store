@@ -34,12 +34,14 @@ export default async function ProductDetailsPage({
 
   return (
     <div className="flex flex-col gap-8 pb-8">
-      <ProductImages
-        imagesIUrls={product.imageUrls}
-        productName={product.name}
-      />
+      <div className="lg:flex lg:h-fit">
+        <ProductImages
+          imagesIUrls={product.imageUrls}
+          productName={product.name}
+        />
 
-      <ProductInfo product={computeProductTotalPrice(product)} />
+        <ProductInfo product={computeProductTotalPrice(product)} />
+      </div>
 
       <div className="flex flex-col">
         <SectionTile>Produtos recomendados</SectionTile>

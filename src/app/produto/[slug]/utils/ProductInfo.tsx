@@ -28,7 +28,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
   }
 
   return (
-    <div className="flex flex-col px-5">
+    <div className="mt-4 flex flex-col px-5 lg:m-5 lg:h-[500px] lg:w-full lg:rounded-lg lg:bg-accent lg:py-8">
       <h2 className="text-lg">{product.name}</h2>
 
       <div className="flex items-center gap-2">
@@ -76,10 +76,12 @@ export function ProductInfo({ product }: ProductInfoProps) {
 
       <div className="mt-4 flex flex-col gap-3">
         <h3 className="font-bold">Descrição</h3>
-        <p className="text-justify text-sm opacity-60">{product.description}</p>
+        <p className="text-justify text-sm opacity-60">
+          {product.description.slice(0, 450)}.
+        </p>
       </div>
 
-      <div className="mt-4 flex items-center justify-between rounded-lg bg-accent px-5 py-2">
+      <div className="mt-4 flex items-center justify-between rounded-lg bg-accent px-5 py-2 lg:bg-[#2A2A2A]">
         <div className="flex items-center gap-4">
           <TruckIcon />
 
