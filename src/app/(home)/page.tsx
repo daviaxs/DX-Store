@@ -42,7 +42,14 @@ export default async function Home() {
       <PromoBanner
         src="/banner_ofertas.png"
         alt="Até 55% de desconto esse mês!"
-        className="min-w-full"
+        className="hidden min-w-full md:flex"
+        priority
+      />
+
+      <PromoBanner
+        src="/banner_ofertas_mobile.png"
+        alt="Até 55% de desconto esse mês!"
+        className="mt-5 min-w-full px-5 md:hidden"
         priority
       />
 
