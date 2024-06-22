@@ -1,6 +1,6 @@
 .productListSCrollbar {
   scrollbar-width: thin;
-  scrollbar-color: #060c04 #dfe9eb;
+  scrollbar-color: #252525 #ffffff00;
 }
 
 .productListSCrollbar::-webkit-scrollbar {
