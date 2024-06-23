@@ -1,3 +1,5 @@
+'use client'
+
 import { prismaClient } from '@/lib/prisma'
 import { CatalogIcon } from '@/shared/assets/CatalogIcon'
 import { BadgeSection } from '@/shared/components/badgeSection/BadgeSection'
