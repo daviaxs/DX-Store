@@ -1,5 +1,3 @@
-'use client'
-
 import { authOptions } from '@/lib/auth'
 import { prismaClient } from '@/lib/prisma'
 import { BadgeSection } from '@/shared/components/badgeSection/BadgeSection'

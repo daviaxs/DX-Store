@@ -1,5 +1,3 @@
-'use client'
-
 import { ParamsProps } from '@/app/categoria/[slug]/page'
 import { prismaClient } from '@/lib/prisma'
 import { ProductList } from '@/shared/components/productList/ProductList'

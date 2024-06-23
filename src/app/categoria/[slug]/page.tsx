@@ -1,5 +1,3 @@
-'use client'
-
 import { prismaClient } from '@/lib/prisma'
 import { BadgeSection } from '@/shared/components/badgeSection/BadgeSection'
 import { ProductItem } from '@/shared/components/productItem/ProductItem'

@@ -1,5 +1,3 @@
-'use client'
-
 import { prismaClient } from '@/lib/prisma'
 import { ProductList } from '@/shared/components/productList/ProductList'
 import { SectionTile } from '@/shared/components/tituloSecao/TituloSecao'
